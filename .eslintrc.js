@@ -6,6 +6,7 @@ module.exports = {
   extends: 'airbnb-base',
   overrides: [
   ],
+  // parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -13,5 +14,11 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'class-methods-use-this': 'off',
+    'import/first': 'off',
+    'quote-props': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'arrow-parens': 'off',
+    'no-param-reassign': 'off',
+
   },
 };
