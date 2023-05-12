@@ -16,9 +16,7 @@ class UserController {
 
   async index(req, res) {
     try {
-      const users = await User.findAll();
-      console.log('UserId: ', req.userId);
-      console.log('UserEmail: ', req.userEmail);
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email'] });
       return res.send(users);
     } catch (error) {
       return res.json(null);
@@ -27,9 +25,10 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-      const user = await User.findByPk(id);
-      return res.send(user);
+      const user = await User.findByPk(req.params.id);
+
+      const { id, nome, email } = user;
+      return res.send({ id, nome, email });
     } catch (error) {
       return res.json(null);
     }
@@ -37,13 +36,7 @@ class UserController {
 
   async update(req, res) {
     try {
-      const { id } = req.params;
-      if (!id) {
-        return res.status(400).json({
-          errors: ['ID not sent'],
-        });
-      }
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(400).json({
           errors: ['User does not exist'],
