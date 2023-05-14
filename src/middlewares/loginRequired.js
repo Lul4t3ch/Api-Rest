@@ -33,7 +33,7 @@ export default async (req, res, next) => {
     return next();
   } catch (error) {
     return res.status(401).json({
-      errors: ['Token is either expired or invalid.'],
+      errors: ['Login is required.'],
     });
   }
 };
